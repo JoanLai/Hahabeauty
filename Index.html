@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hahabeauty 純粹美學｜預約與價目表</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --gold: #c9a25f;
+      --text: #333333;
+      --bg: #ffffff;
+      --light: #f8f5ef;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 18px 40px;
+    }
+
+    /* 共用區塊 */
+
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .sub-title {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 12px auto 24px;
+    }
+
+    section {
+      margin-bottom: 32px;
+      padding: 18px 16px;
+      border-radius: 14px;
+      background: var(--light);
+      border: 1px solid #eee4d3;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+
+    .section-title-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(201, 162, 95, 0.35);
+    }
+
+    .section-title h2 {
+      font-size: 1rem;
+      color: var(--gold);
+    }
+
+    p {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+
+    /* Hero */
+
+    .hero {
+      text-align: center;
+      padding: 18px 10px 24px;
+      margin-bottom: 8px;
+    }
+
+    .brand {
+      font-size: 0.95rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .hero-note {
+      font-size: 0.82rem;
+      color: #777;
+      margin-top: 8px;
+    }
+
+    .hero-cta {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 0.88rem;
+      border: 1px solid var(--gold);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #fff;
+    }
+
+    .btn-outline {
+      color: var(--gold);
+      background: #fff;
+    }
+
+    /* 預約流程 */
+
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .step {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .step-index {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-body-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .step-body-text {
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    /* 取消規範 */
+
+    .rule-group {
+      margin-top: 4px;
+      margin-bottom: 6px;
+    }
+
+    .rule-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .rule-list li::before {
+      content: "・";
+      margin-right: 4px;
+      color: var(--gold);
+    }
+
+    /* 價目表 */
+
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 0.86rem;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #f0e4cf;
+    }
+
+    .price-table th,
+    .price-table td {
+      padding: 8px 10px;
+    }
+
+    .price-table thead {
+      background: #f3e7d4;
+      color: #654e24;
+    }
+
+    .price-table tbody tr:nth-child(even) {
+      background: #fdf8f1;
+    }
+
+    .price-note {
+      font-size: 0.8rem;
+      color: #777;
+      margin-top: 6px;
+    }
+
+    /* 付款方式 */
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #e3d4b6;
+      font-size: 0.8rem;
+    }
+
+    /* Footer */
+
+    .footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #aaa;
+      margin-top: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .page {
+        padding: 32px 24px 48px;
+      }
+      h1 {
+        font-size: 1.9rem;
+      }
+      section {
+        padding: 22px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Hero 區 -->
+    <header class="hero">
+      <div class="brand">HAHABEAUTY 純粹美學</div>
+      <h1>預約流程與價目表</h1>
+      <div class="sub-title">SKIN MANAGEMENT · FACIAL SPA</div>
+      <p class="hero-note">
+        為了維持每位客人的服務品質，本館採「完全預約制」。  
+        請先詳讀預約流程與取消規範再進行預約。
+      </p>
+      <div class="divider"></div>
+
+      <div class="hero-cta">
+        <!-- TODO: 把連結改成你的 LINE / IG / 表單 -->
+        <a class="btn btn-primary" href="https://line.me/xxxx" target="_blank" rel="noreferrer">
+          立即 LINE 預約
+        </a>
+        <a class="btn btn-outline" href="#price">
+          查看服務價目表
+        </a>
+      </div>
+    </header>
+
+    <!-- 預約流程 -->
+    <section id="booking">
+      <div class="section-title">
+        <h2>預約流程 How to Book</h2>
+        <div class="section-title-line"></div>
+      </div>
+
+      <div class="step-list">
+        <div class="step">
+          <div class="step-index">1</div>
+          <div class="step-body">
+            <div class="step-body-title">加入官方 LINE，傳訊預約</div>
+            <div class="step-body-text">
+              傳送：<br>
+             ・姓名／暱稱<br>
+             ・聯絡電話<br>
+             ・想預約的「日期、時段」與「課程項目」。
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-index">2</div>
+          <div class="step-body">
+            <div class="step-body-title">小幫手回覆時段 & 確認膚況</div>
+            <div class="step-body-text">
+              依照您的需求安排合適時段與課程，若有特殊膚況（孕期、敏感、治療中）請主動告知，以便調整流程。
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-index">3</div>
+          <div class="step-body">
+            <div class="step-body-title">支付訂金，即完成預約</div>
+            <div class="step-body-text">
+              ・每筆預約需支付 <strong>NT$500 訂金</strong>（可折抵當日消費）<br>
+              ・付款方式：Line Pay / 轉帳（將於對話中提供帳號）。
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-index">4</div>
+          <div class="step-body">
+            <div class="step-body-title">預約前一日提醒</div>
+            <div class="step-body-text">
+              系統會於前一日透過 LINE 發送提醒訊息，請於當日準時抵達，讓我們為您保留完整療程時間。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 取消／改期規範 -->
+    <section id="rules">
+      <div class="section-title">
+        <h2>取消與改期規範</h2>
+        <div class="section-title-line"></div>
+      </div>
+
+      <div class="rule-group">
+        <div class="rule-title">📌 改期規則</div>
+        <ul class="rule-list">
+          <li>最晚需於「預約前 24 小時」告知改期，訂金可保留一次。</li>
+          <li>未於 24 小時前告知視同當次使用，訂金恕不退還。</li>
+        </ul>
+      </div>
+
+      <div class="rule-group">
+        <div class="rule-title">📌 取消預約</div>
+        <ul class="rule-list">
+          <li>預約當日「臨時取消」或未到店，視為爽約一次，訂金全數作為場地與時間保留費。</li>
+          <li>連續兩次爽約，本館有權婉拒日後預約。</li>
+        </ul>
+      </div>
+
+      <div class="rule-group">
+        <div class="rule-title">📌 遲到須知</div>
+        <ul class="rule-list">
+          <li>請儘量準時抵達，若可能遲到請提前於 LINE 告知。</li>
+          <li>遲到 10 分鐘內：依原課程進行，但結束時間不順延。</li>
+          <li>遲到超過 20 分鐘：本館有權為您調整為較短流程，或視同取消處理。</li>
+        </ul>
+      </div>
+
+      <p class="price-note">
+        感謝您的理解與配合，良好的預約禮儀能讓每一位客人都享有最舒適的療程時間。
+      </p>
+    </section>
+
+    <!-- 價目表 -->
+    <section id="price">
+      <div class="section-title">
+        <h2>服務價目表 Price List</h2>
+        <div class="section-title-line"></div>
+      </div>
+
+      <!-- TODO：下面表格內容請改成你實際的課程與價格 -->
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>課程項目</th>
+            <th>說明</th>
+            <th>價格</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>基礎深層清潔</td>
+            <td>膚況諮詢＋溫和清潔＋粉刺代謝護理</td>
+            <td>NT$ 1,280</td>
+          </tr>
+          <tr>
+            <td>舒緩保濕修護</td>
+            <td>適合乾燥、敏弱肌，補水＋修護屏障</td>
+            <td>NT$ 1,580</td>
+          </tr>
+          <tr>
+            <td>痘痘問題肌管理</td>
+            <td>粉刺痘痘調理，搭配鎮靜敷護</td>
+            <td>NT$ 1,880</td>
+          </tr>
+          <tr>
+            <td>緊緻提升課程</td>
+            <td>適合輕熟齡，提升輪廓與肌膚彈力</td>
+            <td>NT$ 2,280</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="price-note">
+        ※ 實際課程會依當日膚況調整步驟與品項，首次體驗可享專屬優惠，詳情請私訊 LINE 詢問。<br>
+        ※ 如有孕期、特殊治療中（雷射、藥物），請務必於預約時主動告知。
+      </p>
+    </section>
+
+    <!-- 付款方式與聯絡 -->
+    <section id="payment">
+      <div class="section-title">
+        <h2>付款方式 & 聯絡資訊</h2>
+        <div class="section-title-line"></div>
+      </div>
+
+      <p>為提供您方便流暢的結帳體驗，本館提供以下付款方式：</p>
+
+      <div class="badge-row">
+        <div class="badge">💳 Line Pay</div>
+        <div class="badge">💵 現金</div>
+        <div class="badge">🏦 銀行轉帳（訂金）</div>
+      </div>
+
+      <p style="margin-top:10px;">
+        地址：高雄市＿＿區＿＿路＿＿號<br>
+        預約專線：09xx-xxx-xxx<br>
+        LINE 官方帳號：@yourlineid
+      </p>
+    </section>
+
+    <div class="footer">
+      Hahabeauty 純粹美學 · 本頁僅供預約說明與參考，實際活動與優惠以現場公告為主。
+    </div>
+  </div>
+</body>
+</html>
